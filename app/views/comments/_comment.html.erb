@@ -1,7 +1,8 @@
 <% unless comment.parent_id || !comment.persisted? %>
   <div class="card">
     <div class="card-body">
-      <%= comment.body %>
+      <h5><%= comment.body %></h5>
+      <p>Jimbo56 | <%= comment.created_at %></p>
       <%= link_to 'reply', new_post_comment_path(@post, parent_id: comment.id), remote: true, class: 'd-block' %>
     </div>
   </div>
