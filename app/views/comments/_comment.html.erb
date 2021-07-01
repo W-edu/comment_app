@@ -3,6 +3,14 @@
     <div class="card-body">
       <h5><%= comment.body %></h5>
       <p>Jimbo56 | <%= comment.created_at %></p>
+      <% if comment.replies.any? %>
+        <p><%= comment.replies.count %> comments</p>
+        <% comment.replies.each do |reply| %>
+          <%= render partial: 'comments/comment', locals: { comment: reply} %>
+        <% end %>
+      <% else %>
+        <p>No comments yet</p>
+      <% end %>
       <%= link_to 'reply', new_post_comment_path(@post, parent_id: comment.id), remote: true, class: 'd-block' %>
     </div>
   </div>
